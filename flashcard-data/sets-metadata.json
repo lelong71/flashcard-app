@@ -1,0 +1,26 @@
+{
+  "flashcard_sets": [
+    {
+      "id": "medical_exam_1",
+      "filename": "flashcard.json",
+      "title": "Medical Exam Questions",
+      "description": "Comprehensive medical examination questions covering various topics",
+      "category": "Medical",
+      "difficulty": "Intermediate",
+      "card_count": 214,
+      "created_date": "2024-01-15",
+      "tags": ["medical", "exam", "healthcare"]
+    }
+  ],
+  "categories": [
+    "Medical",
+    "Science", 
+    "History",
+    "Language",
+    "Mathematics",
+    "Technology",
+    "Business",
+    "Other"
+  ],
+  "last_updated": "2024-01-15T10:00:00Z"
+}
