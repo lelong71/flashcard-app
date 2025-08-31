@@ -213,7 +213,7 @@ class PDFFlashcardConverter:
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Convert PDF files with questions and answers to JSON format for flashcard apps',
+        description="Convert PDF files with questions and answers to JSON format for Cait's flashcard apps",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

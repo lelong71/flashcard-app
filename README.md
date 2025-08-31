@@ -1,4 +1,4 @@
-# Flashcard App
+# Cait's Flashcard App
 
 A modern React-based flashcard application for studying PDF-converted questions.
 

@@ -2,7 +2,7 @@
 
 ## 🚀 How to Deliver as Static Bundle
 
-Your flashcard app has been built as a static bundle that can be opened directly in any browser without needing a server!
+Your Cait's flashcard app has been built as a static bundle that can be opened directly in any browser without needing a server!
 
 ### 📁 What's in the `build/` folder:
 

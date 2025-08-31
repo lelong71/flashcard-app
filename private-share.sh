@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# 🔒 Flashcard App - Private Sharing Script
+# 🔒 Cait's Flashcard App - Private Sharing Script
 # This script helps you share your app privately with selected users
 
-echo "🔒 Flashcard App - Private Sharing Options"
+echo "🔒 Cait's Flashcard App - Private Sharing Options"
 echo "========================================="
 echo ""
 
@@ -190,4 +190,4 @@ echo "• Share passwords separately from files"
 echo "• Regularly update access permissions"
 echo "• Monitor access logs if possible"
 echo ""
-echo "🎉 Your private flashcard app is ready!"
+echo "🎉 Your private Cait's flashcard app is ready!"

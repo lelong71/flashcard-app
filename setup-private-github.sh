@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 🔒 GitHub Private Repository Setup Script
-# This script helps you set up a private GitHub repository for your flashcard app
+# This script helps you set up a private GitHub repository for your Cait's flashcard app
 
 echo "🔒 Setting up Private GitHub Repository"
 echo "======================================"
@@ -40,7 +40,7 @@ echo ""
 # Add and commit files
 echo "📝 Adding files to git..."
 git add .
-git commit -m "Initial commit: Flashcard app"
+git commit -m "Initial commit: Cait's flashcard app"
 
 # Set up remote
 echo "🔗 Setting up remote repository..."
@@ -88,7 +88,7 @@ if [ $? -eq 0 ]; then
     echo "2. Collaborators → Add people"
     echo "3. Enter their GitHub username"
     echo ""
-    echo "🔒 Your flashcard app is now private and secure!"
+    echo "🔒 Your Cait's flashcard app is now private and secure!"
 else
     echo "❌ Failed to push to GitHub. Please check your repository URL."
 fi

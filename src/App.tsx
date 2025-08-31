@@ -41,7 +41,7 @@ function AppContent() {
                 color="gray.800"
                 fontWeight="bold"
               >
-                🎓 Flashcard App
+                🎓 Cait's Flashcard App
               </Heading>
               <Button
                 variant="ghost"

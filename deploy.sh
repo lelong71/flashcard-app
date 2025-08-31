@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# 📦 Flashcard App Deployment Script
+# 📦 Cait's Flashcard App Deployment Script
 # This script builds and prepares your flashcard app for static deployment
 
-echo "🚀 Building Flashcard App..."
+echo "🚀 Building Cait's Flashcard App..."
 
 # Build the app
 npm run build

@@ -5,7 +5,7 @@ This folder contains Python utilities for converting PDF files to flashcard JSON
 ## Tools
 
 ### `pdf_converter.py`
-Converts PDF files with questions and answers into JSON format for use with the React flashcard app.
+Converts PDF files with questions and answers into JSON format for use with the React Cait's flashcard app.
 
 **Usage:**
 ```bash
@@ -66,4 +66,4 @@ python utils/add_flashcard_set.py history_facts.json "History Facts" "World hist
 
 ## Output
 
-Both tools generate JSON files that are compatible with the React flashcard app located in the `src/` directory.
+Both tools generate JSON files that are compatible with the React Cait's flashcard app located in the `src/` directory.

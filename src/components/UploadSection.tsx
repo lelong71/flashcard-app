@@ -441,7 +441,7 @@ export function UploadSection() {
             
             <VStack spacing={4}>
               <Heading size="lg" color="gray.800">
-                Welcome to Flashcard App! 🎓
+                Welcome to Cait's Flashcard App! 🎓
               </Heading>
               
               <Text color="gray.600" fontSize="lg">

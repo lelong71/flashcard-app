@@ -146,7 +146,7 @@ def add_flashcard_set(json_file_path, title=None, description=None, category="Ot
     print(f"📊 Cards: {card_count}")
     print(f"📂 Category: {category}")
     print(f"📈 Difficulty: {difficulty}")
-    print(f"\nThe set will now appear in the Flashcard App!")
+    print(f"\nThe set will now appear in Cait's Flashcard App!")
     
     return True
 
