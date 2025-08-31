@@ -1,6 +1,7 @@
 {
   "name": "flashcard-app",
   "version": "1.0.0",
+  "homepage": "https://lelong71.github.io/flashcard-app",
   "description": "Modern React-based flashcard application for studying PDF-converted questions",
   "private": true,
   "dependencies": {
