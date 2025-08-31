@@ -1,0 +1,193 @@
+#!/bin/bash
+
+# 🔒 Flashcard App - Private Sharing Script
+# This script helps you share your app privately with selected users
+
+echo "🔒 Flashcard App - Private Sharing Options"
+echo "========================================="
+echo ""
+
+# Build the app first
+echo "📦 Building the app..."
+npm run build
+
+if [ $? -ne 0 ]; then
+    echo "❌ Build failed! Exiting."
+    exit 1
+fi
+
+echo "✅ Build successful!"
+echo ""
+
+# Show private options
+echo "🔒 Choose your private sharing method:"
+echo ""
+echo "1. 🔐 Password-Protected Netlify (Most Secure)"
+echo "2. 👥 Private GitHub Repository (Collaborators Only)"
+echo "3. 📁 Encrypted File (Offline + Password)"
+echo "4. 🖥️  Private Server (Full Control)"
+echo "5. ☁️  Cloud Storage (Google Drive/Dropbox)"
+echo "6. 📋 Show all private options"
+echo ""
+
+read -p "Enter your choice (1-6): " choice
+
+case $choice in
+    1)
+        echo ""
+        echo "🔐 Setting up Password-Protected Netlify..."
+        echo ""
+        echo "📋 Steps:"
+        echo "1. Go to https://netlify.com"
+        echo "2. Drag the 'build' folder to upload"
+        echo "3. Get your site URL"
+        echo "4. Go to Site Settings → Password Protection"
+        echo "5. Enable password protection"
+        echo "6. Set a secure password"
+        echo ""
+        echo "📁 Your build folder is ready: $(pwd)/build"
+        echo "🔐 Share: URL + password with authorized users"
+        echo ""
+        echo "✅ Benefits:"
+        echo "• Professional and secure"
+        echo "• Easy to manage access"
+        echo "• Works on all devices"
+        echo "• Can revoke access anytime"
+        ;;
+    2)
+        echo ""
+        echo "👥 Setting up Private GitHub Repository..."
+        echo ""
+        echo "📋 Steps:"
+        echo "1. Make your GitHub repo private"
+        echo "2. Add users as collaborators:"
+        echo "   Settings → Collaborators → Add people"
+        echo "3. Deploy to GitHub Pages:"
+        echo ""
+        echo "npm run build && gh-pages -d build"
+        echo ""
+        echo "4. Share the GitHub Pages URL with collaborators"
+        echo ""
+        echo "✅ Benefits:"
+        echo "• Only invited users can access"
+        echo "• Version control included"
+        echo "• GitHub's security features"
+        echo "• Easy collaboration"
+        ;;
+    3)
+        echo ""
+        echo "📁 Creating Encrypted File..."
+        echo ""
+        read -s -p "Enter a secure password: " password
+        echo ""
+        echo "Creating encrypted zip file..."
+        zip -P "$password" -r flashcard-private.zip build/
+        echo ""
+        echo "✅ Created: flashcard-private.zip (password protected)"
+        echo ""
+        echo "📋 Share with users:"
+        echo "1. Send flashcard-private.zip"
+        echo "2. Send password separately (email, text, etc.)"
+        echo "3. Users extract and open index.html"
+        echo ""
+        echo "✅ Benefits:"
+        echo "• Works offline"
+        echo "• No server required"
+        echo "• File-level encryption"
+        echo "• Simple distribution"
+        ;;
+    4)
+        echo ""
+        echo "🖥️  Setting up Private Server..."
+        echo ""
+        echo "📋 Options:"
+        echo "• AWS S3 + CloudFront"
+        echo "• DigitalOcean Droplet"
+        echo "• Vercel with authentication"
+        echo "• Custom server with auth"
+        echo ""
+        echo "📁 Your build folder: $(pwd)/build"
+        echo ""
+        echo "🔐 Authentication options:"
+        echo "• Basic Auth (.htaccess)"
+        echo "• Custom login system"
+        echo "• IP restrictions"
+        echo "• Two-factor authentication"
+        echo ""
+        echo "✅ Benefits:"
+        echo "• Full control over access"
+        echo "• Custom authentication"
+        echo "• Professional hosting"
+        echo "• Advanced security features"
+        ;;
+    5)
+        echo ""
+        echo "☁️  Setting up Cloud Storage..."
+        echo ""
+        echo "📋 Steps:"
+        echo "1. Create encrypted zip:"
+        echo "   zip -P 'password' -r flashcard-private.zip build/"
+        echo "2. Upload to Google Drive/Dropbox"
+        echo "3. Create shared folder"
+        echo "4. Invite specific users"
+        echo "5. Set folder password"
+        echo ""
+        echo "✅ Benefits:"
+        echo "• Familiar platforms"
+        echo "• Easy sharing"
+        echo "• Version control"
+        echo "• Access management"
+        ;;
+    6)
+        echo ""
+        echo "📋 All Private Sharing Options Summary:"
+        echo ""
+        echo "🥇 Password-Protected Netlify:"
+        echo "   • Users visit URL + enter password"
+        echo "   • Professional and secure"
+        echo "   • Easy to manage access"
+        echo "   • Free hosting"
+        echo ""
+        echo "🥈 Private GitHub Repository:"
+        echo "   • Only collaborators can access"
+        echo "   • GitHub account required"
+        echo "   • Version control included"
+        echo "   • Free hosting"
+        echo ""
+        echo "🥉 Encrypted File:"
+        echo "   • Password-protected zip file"
+        echo "   • Works offline"
+        echo "   • No server needed"
+        echo "   • Manual distribution"
+        echo ""
+        echo "🏅 Private Server:"
+        echo "   • Full control over access"
+        echo "   • Custom authentication"
+        echo "   • Professional hosting"
+        echo "   • Monthly cost ($5-20)"
+        echo ""
+        echo "🏅 Cloud Storage:"
+        echo "   • Google Drive/Dropbox"
+        echo "   • Familiar platforms"
+        echo "   • Easy sharing"
+        echo "   • Access management"
+        echo ""
+        echo "🎯 Recommendation:"
+        echo "• Small groups: Password-protected Netlify"
+        echo "• Technical users: Private GitHub"
+        echo "• Maximum security: Private server"
+        echo "• Simple sharing: Encrypted file"
+        ;;
+    *)
+        echo "❌ Invalid choice. Please run the script again."
+        ;;
+esac
+
+echo ""
+echo "🔒 Security Tips:"
+echo "• Use strong passwords"
+echo "• Share passwords separately from files"
+echo "• Regularly update access permissions"
+echo "• Monitor access logs if possible"
+echo ""
+echo "🎉 Your private flashcard app is ready!"
