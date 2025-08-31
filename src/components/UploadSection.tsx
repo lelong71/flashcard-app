@@ -57,7 +57,7 @@ export function UploadSection() {
     setIsScanning(true);
     try {
       // Load the metadata file to get organized flashcard sets
-      const metadataResponse = await fetch('/flashcard-data/sets-metadata.json');
+      const metadataResponse = await fetch('./flashcard-data/sets-metadata.json');
       if (!metadataResponse.ok) {
         throw new Error(`Could not load flashcard sets metadata: ${metadataResponse.status} ${metadataResponse.statusText}`);
       }
@@ -78,7 +78,7 @@ export function UploadSection() {
       // Check which files actually exist
       for (const set of metadata.flashcard_sets) {
         try {
-          const response = await fetch(`/flashcard-data/${set.filename}`);
+          const response = await fetch(`./flashcard-data/${set.filename}`);
           if (response.ok) {
             // Verify it's actually JSON
             const fileContentType = response.headers.get('content-type');
@@ -122,7 +122,7 @@ export function UploadSection() {
 
     try {
       // Load the actual JSON file from the flashcard-data folder
-      const response = await fetch(`/flashcard-data/${filename}`);
+      const response = await fetch(`./flashcard-data/${filename}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -152,7 +152,7 @@ export function UploadSection() {
       
       // Find and set the current set information
       try {
-        const metadataResponse = await fetch('/flashcard-data/sets-metadata.json');
+        const metadataResponse = await fetch('./flashcard-data/sets-metadata.json');
         if (metadataResponse.ok) {
           const setsMetadata = await metadataResponse.json();
           const currentSet = setsMetadata.flashcard_sets.find((set: any) => set.filename === filename);

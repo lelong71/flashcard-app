@@ -67,14 +67,14 @@ export function FlashcardSection() {
 
   const loadAvailableSets = async () => {
     try {
-      const metadataResponse = await fetch('/flashcard-data/sets-metadata.json');
+      const metadataResponse = await fetch('./flashcard-data/sets-metadata.json');
       if (metadataResponse.ok) {
         const metadata = await metadataResponse.json();
         const availableSets: FlashcardSet[] = [];
         
         for (const set of metadata.flashcard_sets) {
           try {
-            const response = await fetch(`/flashcard-data/${set.filename}`);
+            const response = await fetch(`./flashcard-data/${set.filename}`);
             if (response.ok) {
               availableSets.push(set);
             }
@@ -92,7 +92,7 @@ export function FlashcardSection() {
 
   const handleSetSelect = async (filename: string) => {
     try {
-      const response = await fetch(`/flashcard-data/${filename}`);
+              const response = await fetch(`./flashcard-data/${filename}`);
       if (response.ok) {
         const data = await response.json();
         dispatch({ type: 'SET_FLASHCARDS', payload: data.flashcards });
