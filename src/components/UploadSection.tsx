@@ -17,16 +17,9 @@ import {
   Divider,
   useColorModeValue,
   SimpleGrid,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
   useBreakpointValue
 } from '@chakra-ui/react';
-import { Upload, FileText, FolderOpen, RefreshCw, Plus } from 'lucide-react';
+import { Upload, FileText, FolderOpen, RefreshCw } from 'lucide-react';
 import { useFlashcard } from '../contexts/FlashcardContext';
 
 interface FlashcardSet {
@@ -47,7 +40,6 @@ export function UploadSection() {
   const [availableSets, setAvailableSets] = useState<FlashcardSet[]>([]);
   const [selectedSet, setSelectedSet] = useState<string>('');
   const [isScanning, setIsScanning] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const selectedSetRef = useRef<string>('');
   
@@ -243,7 +235,7 @@ export function UploadSection() {
         isClosable: true,
       });
       
-      onClose(); // Close the upload modal
+      // Modal is hidden, so no need to close it
     } catch (error) {
       const errorMessage = `Failed to load JSON file: ${error instanceof Error ? error.message : 'Unknown error'}`;
       dispatch({ type: 'SET_ERROR', payload: errorMessage });
@@ -256,7 +248,7 @@ export function UploadSection() {
         isClosable: true,
       });
     }
-  }, [dispatch, toast, onClose]);
+  }, [dispatch, toast]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -293,105 +285,7 @@ export function UploadSection() {
 
   // If we have flashcards loaded, show a minimal upload button
   if (state.flashcards.length > 0) {
-    return (
-      <Box position="fixed" bottom={6} right={6} zIndex={1000}>
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <Button
-            colorScheme="brand"
-            size="lg"
-            rounded="full"
-            leftIcon={<Icon as={Plus} />}
-            onClick={onOpen}
-            boxShadow="lg"
-          >
-            Add More Sets
-          </Button>
-        </motion.div>
-
-        {/* Upload Modal */}
-        <Modal isOpen={isOpen} onClose={onClose} size="lg">
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>📤 Upload New Flashcard Set</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <VStack spacing={6}>
-                <Text color="gray.600">
-                  Upload a JSON file created by the PDF converter tool
-                </Text>
-
-                <Box
-                  borderWidth={2}
-                  borderStyle="dashed"
-                  borderColor={isDragOver ? "blue.500" : "gray.300"}
-                  bg={isDragOver ? "blue.50" : "transparent"}
-                  rounded="lg"
-                  p={8}
-                  transition="all 0.2s"
-                  _hover={{ borderColor: "gray.400" }}
-                  onDrop={handleDrop}
-                  onDragOver={handleDragOver}
-                  onDragLeave={handleDragLeave}
-                  w="100%"
-                >
-                  <VStack spacing={4}>
-                    <label htmlFor="jsonFile" style={{ cursor: 'pointer' }}>
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Button 
-                          colorScheme="brand" 
-                          size="lg"
-                          leftIcon={<Icon as={Upload} />}
-                        >
-                          Choose JSON File
-                        </Button>
-                      </motion.div>
-                    </label>
-                    
-                    <input
-                      type="file"
-                      id="jsonFile"
-                      accept=".json"
-                      style={{ display: 'none' }}
-                      onChange={handleFileInput}
-                    />
-                    
-                    <Text fontSize="sm" color="gray.500">
-                      or drag and drop JSON file here
-                    </Text>
-                  </VStack>
-                </Box>
-
-                {/* Error Display */}
-                <AnimatePresence>
-                  {state.error && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      style={{ width: '100%' }}
-                    >
-                      <Alert status="error" rounded="lg">
-                        <AlertIcon />
-                        <Box>
-                          <AlertTitle>Error Loading File</AlertTitle>
-                          <AlertDescription>{state.error}</AlertDescription>
-                        </Box>
-                      </Alert>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </VStack>
-            </ModalBody>
-          </ModalContent>
-        </Modal>
-      </Box>
-    );
+    return null; // Hide the "Add More Sets" button for now
   }
 
   // If we're still scanning for files, show a loading state
