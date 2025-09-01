@@ -85,28 +85,23 @@ function AppContent() {
                   bg="white" 
                   rounded="lg" 
                   shadow="sm" 
-                  p={4} 
-                  maxW="2xl"
+                  p={3} 
+                  maxW="xl"
                   borderWidth="1px"
                   borderColor="gray.200"
                   mx="auto"
                 >
-                  <VStack spacing={2} align="start">
-                    <HStack spacing={3} flexWrap="wrap">
-                      <Text fontSize="lg" fontWeight="semibold" color="gray.800">
-                        {state.currentSet.title}
-                      </Text>
-                      <Badge colorScheme="blue" variant="subtle">
-                        {state.currentSet.category}
-                      </Badge>
-                      <Badge colorScheme="orange" variant="subtle">
-                        {state.currentSet.difficulty}
-                      </Badge>
-                    </HStack>
-                    <Text fontSize="md" color="gray.600" lineHeight="relaxed">
-                      {state.currentSet.description}
+                  <HStack spacing={3} justify="center" flexWrap="wrap">
+                    <Text fontSize="lg" fontWeight="semibold" color="gray.800">
+                      {state.currentSet.title}
                     </Text>
-                  </VStack>
+                    <Badge colorScheme="blue" variant="subtle">
+                      {state.currentSet.category}
+                    </Badge>
+                    <Badge colorScheme="orange" variant="subtle">
+                      {state.currentSet.difficulty}
+                    </Badge>
+                  </HStack>
                 </Box>
               </motion.div>
             )}
