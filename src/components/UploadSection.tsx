@@ -23,7 +23,8 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  useDisclosure
+  useDisclosure,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import { Upload, FileText, FolderOpen, RefreshCw, Plus } from 'lucide-react';
 import { useFlashcard } from '../contexts/FlashcardContext';
@@ -52,6 +53,11 @@ export function UploadSection() {
   
   const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
+  
+  // Responsive values
+  const buttonSize = useBreakpointValue({ base: "sm", md: "md" });
+  const headingSize = useBreakpointValue({ base: "lg", md: "xl" });
+  const textSize = useBreakpointValue({ base: "md", lg: "lg" });
 
   const scanForFlashcardSets = useCallback(async () => {
     setIsScanning(true);
@@ -440,11 +446,11 @@ export function UploadSection() {
             </motion.div>
             
             <VStack spacing={4}>
-              <Heading size="lg" color="gray.800">
+              <Heading size={headingSize} color="gray.800">
                 Welcome to Cait's Flashcard App! 🎓
               </Heading>
               
-              <Text color="gray.600" fontSize="lg">
+              <Text color="gray.600" fontSize={textSize}>
                 Choose from your organized flashcard sets
               </Text>
             </VStack>
@@ -452,12 +458,12 @@ export function UploadSection() {
             {/* Available Sets Section */}
             {availableSets.length > 0 && (
               <Box w="100%" textAlign="left">
-                <HStack justify="space-between" mb={4}>
+                <HStack justify="space-between" mb={4} flexWrap="wrap">
                   <Text fontWeight="semibold" color="gray.700" fontSize="lg">
                     📁 Available Flashcard Sets
                   </Text>
                   <Button
-                    size="sm"
+                    size={buttonSize}
                     variant="ghost"
                     leftIcon={<Icon as={RefreshCw} />}
                     onClick={scanForFlashcardSets}
@@ -490,7 +496,7 @@ export function UploadSection() {
                         transition="all 0.2s"
                       >
                         <VStack align="start" spacing={2}>
-                          <HStack justify="space-between" w="100%">
+                          <HStack justify="space-between" w="100%" flexWrap="wrap">
                             <HStack spacing={3}>
                               <Icon as={FileText} color="blue.500" />
                               <Text fontWeight="bold" fontSize="md">
@@ -508,7 +514,7 @@ export function UploadSection() {
                             {set.description}
                           </Text>
                           
-                          <HStack spacing={2}>
+                          <HStack spacing={2} flexWrap="wrap">
                             <Badge colorScheme="green" variant="outline">
                               {set.card_count} cards
                             </Badge>

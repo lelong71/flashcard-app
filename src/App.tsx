@@ -9,7 +9,8 @@ import {
   HStack,
   Button,
   Icon,
-  Badge
+  Badge,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import { HelpCircle } from 'lucide-react';
 import { FlashcardProvider, useFlashcard } from './contexts/FlashcardContext';
@@ -20,14 +21,21 @@ import { Instructions } from './components/Instructions';
 function AppContent() {
   const { state } = useFlashcard();
   const [showInstructions, setShowInstructions] = useState(false);
+  
+  // Responsive values
+  const containerMaxW = useBreakpointValue({ base: "100%", md: "4xl" });
+  const containerPx = useBreakpointValue({ base: 2, md: 4 });
+  const headingSize = useBreakpointValue({ base: "xl", md: "2xl" });
+  const textSize = useBreakpointValue({ base: "md", lg: "lg" });
+  const py = useBreakpointValue({ base: 4, md: 8 });
 
   return (
     <Box 
       minH="100vh" 
       bgGradient="linear(to-br, blue.50, indigo.100)"
-      py={8}
+      py={py}
     >
-      <Container maxW="4xl" px={4}>
+      <Container maxW={containerMaxW} px={containerPx}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -35,11 +43,12 @@ function AppContent() {
           transition={{ duration: 0.6 }}
         >
           <VStack spacing={4} mb={8} textAlign="center">
-            <HStack spacing={4} align="center">
+            <HStack spacing={4} align="center" flexWrap="wrap" justify="center">
               <Heading 
-                size="2xl" 
+                size={headingSize} 
                 color="gray.800"
                 fontWeight="bold"
+                textAlign="center"
               >
                 🎓 Cait's Flashcard App
               </Heading>
@@ -55,8 +64,9 @@ function AppContent() {
               </Button>
             </HStack>
             <Text 
-              fontSize="lg" 
+              fontSize={textSize} 
               color="gray.600"
+              textAlign="center"
             >
               {state.flashcards.length > 0 
                 ? `Studying ${state.flashcards.length} flashcards`
@@ -79,9 +89,10 @@ function AppContent() {
                   maxW="2xl"
                   borderWidth="1px"
                   borderColor="gray.200"
+                  mx="auto"
                 >
                   <VStack spacing={2} align="start">
-                    <HStack spacing={3}>
+                    <HStack spacing={3} flexWrap="wrap">
                       <Text fontSize="lg" fontWeight="semibold" color="gray.800">
                         {state.currentSet.title}
                       </Text>

@@ -6,7 +6,8 @@ import {
   Text, 
   Button, 
   Icon,
-  useColorModeValue
+  useColorModeValue,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import { HelpCircle, CheckCircle } from 'lucide-react';
 import { useFlashcard } from '../contexts/FlashcardContext';
@@ -20,6 +21,14 @@ export function Flashcard({ card }: FlashcardProps) {
   const { state, dispatch } = useFlashcard();
   const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
+  
+  // Responsive values
+  const padding = useBreakpointValue({ base: 4, md: 8 });
+  const minHeight = useBreakpointValue({ base: "80", md: "96" });
+  const iconSize = useBreakpointValue({ base: 8, md: 12 });
+  const headingSize = useBreakpointValue({ base: "md", md: "lg" });
+  const textSize = useBreakpointValue({ base: "md", md: "lg" });
+  const buttonSize = useBreakpointValue({ base: "md", md: "lg" });
 
   const handleToggleAnswer = () => {
     dispatch({ type: 'TOGGLE_ANSWER' });
@@ -35,8 +44,8 @@ export function Flashcard({ card }: FlashcardProps) {
         bg={bgColor}
         rounded="lg"
         shadow="lg"
-        p={8}
-        minH="96"
+        p={padding}
+        minH={minHeight}
         position="relative"
         borderWidth="1px"
         borderColor={borderColor}
@@ -72,10 +81,10 @@ export function Flashcard({ card }: FlashcardProps) {
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
               >
-                <Icon as={HelpCircle} w={12} h={12} color="blue.500" />
+                <Icon as={HelpCircle} w={iconSize} h={iconSize} color="blue.500" />
               </motion.div>
               
-              <Heading size="lg" color="gray.800" mt={4}>
+              <Heading size={headingSize} color="gray.800" mt={4}>
                 Question
               </Heading>
             </div>
@@ -94,7 +103,7 @@ export function Flashcard({ card }: FlashcardProps) {
                 padding: '1rem 0'
               }}
             >
-              <Text fontSize="lg" color="gray.700" lineHeight="relaxed">
+              <Text fontSize={textSize} color="gray.700" lineHeight="relaxed">
                 {card.question}
               </Text>
             </motion.div>
@@ -106,7 +115,7 @@ export function Flashcard({ card }: FlashcardProps) {
             >
               <Button
                 colorScheme="brand"
-                size="lg"
+                size={buttonSize}
                 onClick={handleToggleAnswer}
               >
                 Show Answer
@@ -136,10 +145,10 @@ export function Flashcard({ card }: FlashcardProps) {
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
               >
-                <Icon as={CheckCircle} w={12} h={12} color="green.500" />
+                <Icon as={CheckCircle} w={iconSize} h={iconSize} color="green.500" />
               </motion.div>
               
-              <Heading size="lg" color="gray.800" mt={4}>
+              <Heading size={headingSize} color="gray.800" mt={4}>
                 Answer
               </Heading>
             </div>
@@ -158,7 +167,7 @@ export function Flashcard({ card }: FlashcardProps) {
                 padding: '1rem 0'
               }}
             >
-              <Text fontSize="lg" color="gray.700" lineHeight="relaxed">
+              <Text fontSize={textSize} color="gray.700" lineHeight="relaxed">
                 {card.answer}
               </Text>
             </motion.div>
@@ -170,7 +179,7 @@ export function Flashcard({ card }: FlashcardProps) {
             >
               <Button
                 colorScheme="green"
-                size="lg"
+                size={buttonSize}
                 onClick={handleToggleAnswer}
               >
                 Show Question

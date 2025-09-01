@@ -15,7 +15,9 @@ import {
   VStack,
   Box,
   Badge,
-  SimpleGrid
+  SimpleGrid,
+  useBreakpointValue,
+  Stack
 } from '@chakra-ui/react';
 import { 
   ChevronLeft, 
@@ -44,6 +46,11 @@ export function FlashcardSection() {
   const { state, dispatch } = useFlashcard();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [availableSets, setAvailableSets] = React.useState<FlashcardSet[]>([]);
+  
+  // Responsive values
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const buttonSize = useBreakpointValue({ base: "sm", md: "md" });
+  const textSize = useBreakpointValue({ base: "md", md: "lg" });
 
   const handlePrevious = () => {
     if (state.currentCardIndex > 0) {
@@ -121,26 +128,27 @@ export function FlashcardSection() {
         transition={{ duration: 0.5 }}
       >
         {/* Progress and Controls */}
-        <HStack justify="space-between" mb={6}>
-          <HStack spacing={4}>
+        <VStack spacing={4} mb={6}>
+          {/* Progress */}
+          <HStack justify="center" spacing={4}>
             <motion.div
               whileHover={!isFirstCard ? { scale: 1.05 } : {}}
               whileTap={!isFirstCard ? { scale: 0.95 } : {}}
             >
               <Button
                 colorScheme="gray"
-                size="md"
+                size={buttonSize}
                 onClick={handlePrevious}
                 disabled={isFirstCard}
                 leftIcon={<Icon as={ChevronLeft} />}
                 opacity={isFirstCard ? 0.5 : 1}
                 cursor={isFirstCard ? 'not-allowed' : 'pointer'}
               >
-                Previous
+                {isMobile ? "Prev" : "Previous"}
               </Button>
             </motion.div>
             
-            <Text fontSize="lg" fontWeight="semibold" color="gray.700">
+            <Text fontSize={textSize} fontWeight="semibold" color="gray.700">
               {state.currentCardIndex + 1} of {state.flashcards.length}
             </Text>
             
@@ -150,28 +158,35 @@ export function FlashcardSection() {
             >
               <Button
                 colorScheme="gray"
-                size="md"
+                size={buttonSize}
                 onClick={handleNext}
                 disabled={isLastCard}
                 rightIcon={<Icon as={ChevronRight} />}
                 opacity={isLastCard ? 0.5 : 1}
                 cursor={isLastCard ? 'not-allowed' : 'pointer'}
               >
-                Next
+                {isMobile ? "Next" : "Next"}
               </Button>
             </motion.div>
           </HStack>
           
-          <HStack spacing={2}>
+          {/* Action Buttons */}
+          <Stack 
+            direction={isMobile ? "column" : "row"} 
+            spacing={2} 
+            w="100%" 
+            justify="center"
+          >
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Button
                 colorScheme="purple"
-                size="md"
+                size={buttonSize}
                 onClick={handleShuffle}
                 leftIcon={<Icon as={Shuffle} />}
+                w={isMobile ? "100%" : "auto"}
               >
                 Shuffle
               </Button>
@@ -183,9 +198,10 @@ export function FlashcardSection() {
             >
               <Button
                 colorScheme="green"
-                size="md"
+                size={buttonSize}
                 onClick={handleReset}
                 leftIcon={<Icon as={RotateCcw} />}
+                w={isMobile ? "100%" : "auto"}
               >
                 Reset
               </Button>
@@ -197,19 +213,20 @@ export function FlashcardSection() {
             >
               <Button
                 colorScheme="blue"
-                size="md"
+                size={buttonSize}
                 onClick={() => {
                   loadAvailableSets();
                   onOpen();
                 }}
                 rightIcon={<Icon as={ChevronDown} />}
                 leftIcon={<Icon as={FolderOpen} />}
+                w={isMobile ? "100%" : "auto"}
               >
-                Change Set
+                {isMobile ? "Change Set" : "Change Set"}
               </Button>
             </motion.div>
-          </HStack>
-        </HStack>
+          </Stack>
+        </VStack>
 
         {/* Flashcard Display */}
         <Flashcard card={currentCard} />
